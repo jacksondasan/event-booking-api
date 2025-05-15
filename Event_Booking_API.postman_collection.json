@@ -1,0 +1,143 @@
+{
+	"info": {
+		"name": "Event Booking API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "login"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "List Events",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/events?country={{country}}&date={{date}}&per_page={{per_page}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "events"],
+							"query": [
+								{
+									"key": "country",
+									"value": "{{country}}"
+								},
+								{
+									"key": "date",
+									"value": "{{date}}"
+								},
+								{
+									"key": "per_page",
+									"value": "{{per_page}}"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Sample Event\",\n    \"description\": \"Event description\",\n    \"start_date\": \"2025-06-01 10:00:00\",\n    \"end_date\": \"2025-06-01 18:00:00\",\n    \"country\": \"United States\",\n    \"venue\": \"Sample Venue\",\n    \"capacity\": 100\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/events",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "events"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"event_id\": 1,\n    \"attendee_id\": 1,\n    \"ticket_quantity\": 2\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/bookings",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "bookings"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000"
+		}
+	]
+}
